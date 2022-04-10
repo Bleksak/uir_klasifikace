@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
 
 
-@dataclass
-class Row:
-    name: str
-    count: int
+@dataclass(frozen=True)
+class Class:
+    name: field(init=True, hash=True, compare=True)
+
+    def __str__(self) -> str:
+        return self.name

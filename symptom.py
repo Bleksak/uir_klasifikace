@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 from operator import itemgetter
 
+
 class Symptom(ABC):
     @abstractmethod
     def make(self, sentence: str) -> list[int]:
         return []
+
 
 class DocumentFrequency(Symptom):
     def __count_words(self, text: str) -> tuple[str, int]:
@@ -19,7 +21,8 @@ class DocumentFrequency(Symptom):
         words = self.__count_words(sentence)
         s = sum(words, itemgetter(1))
 
-        return {word[0]:word[1]/s for word in words}
+        return {word[0]: word[1]/s for word in words}
+
 
 class TFID(Symptom):
     def make(sentence: str) -> list[int]:
