@@ -1,8 +1,7 @@
-from dataclasses import dataclass
+from typing import NamedTuple
 from cls import Class
 
 
-@dataclass(frozen=True)
-class Dialog:
+class Dialog(NamedTuple):
     text: str
     cls: Class

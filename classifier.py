@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
-from symptom import DocumentFrequency, Symptom
+from dataclasses import dataclass
+from typing import Callable
 from cls import Class
 from dialog import Dialog
 
@@ -10,21 +10,14 @@ class Classifier(ABC):
     """defines the classifier abstract class"""
 
     classes: set[Class]
-    symptom: Symptom = DocumentFrequency()
-    class_counts: dict[Class, int] = field(init=False, default_factory=dict)
-    train_data: list[Dialog] = field(init=False)
-    count: int = 0
-
-    def train(self, dialogs: list[Dialog]):
-        self.class_counts = {cls:0 for cls in self.classes}
-
-        for dialog in dialogs:
-            self.class_counts[dialog.cls] += 1
-            self.count += 1
-            # TODO: symptoms
-        
-        
+    symptom: Callable[[ set[Class], list[Dialog] ], dict[Class, dict[str, float]]]
 
     @abstractmethod
-    def classify(sentence) -> Class:
+    def train(self, dialogs: list[Dialog]) -> None:
+        """trains the classifier, this must be called before calling classify"""
+        pass
+
+    @abstractmethod
+    def classify(sentence: str) -> Class:
+        """classifies the sentence into one of classes, classifier must be trained before calling this method, otherwise random result will be returned"""
         pass
