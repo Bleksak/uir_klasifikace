@@ -1,0 +1,126 @@
+BACKCHANNEL whoa!
+INFORM i'll have your gags off in a second!
+BACKCHANNEL not so fast
+INFORM - we have an old score to settle.
+ORDER fight hard master,
+INFORM they are many!
+INFORM something tells me that doctor fairchild and his unholy three are on the last trail!
+FEEDBACK something grim,
+INFORM  a dose of your own medicine.
+WHY_QUESTION what ye going to do??
+BACKCHANNEL ugh!
+INFORM like punching a murderer on the jaw with both feet off the ground!
+BACKCHANNEL yawp!
+INFORM he means it!
+BACKCHANNEL owww ...
+INFORM my corset's...
+BACKCHANNEL oops!
+POLITENESS_FORMULA ah5 sorry sir'ah didn't see yo!
+BACKCHANNEL ah,
+INFORM good and soapy.
+INFORM too ... full of bubbles!
+INFORM that's the way i like a bath!
+INFORM ... and that's what happened sergeant.
+INFORM she's a witch, i tell you.
+INFORM a curse on the whole territory!
+FEEDBACK a most amazing story, rossbach,
+INFORM but i'm inclined to take your word for it!
+INFORM we'll send out a patrol at once!
+BACKCHANNEL ho - hum!
+INFORM i feel so lonely!
+BACKCHANNEL oops!
+INFORM i tripped!
+BACKCHANNEL oh boy!
+INFORM this is wonderful!
+INFORM i could soak up water faor a week!
+BACKCHANNEL gosh.
+INFORM if i could only get in touch with jupiter by telephone!
+INFORM you can take a little snooze.
+INFORM when my pard gets you tied up, i'm sure he'll feel better!
+BACKCHANNEL ha! ha!
+INFORM that stops you doesn't it nelson!
+INFORM - now, you are going to destroy yourself!
+GREET hey, redmask!
+ORDER help!
+INFORM i should have known billy gage was some-where behind this!
+ORDER ...and get him snubbed and ready for saddling!
+BACKCHANNEL  www...
+INFORM looks like saber my friend after all !
+INFORM ke got scared away, too !
+WHY_QUESTION why dont you like to prac-tice your piano lessons billy?
+FEEDBACK 'cause i just hate those drills and exercises
+YES-NO_QUESTION but have you thought what would happen to one of those people if his attention was distracted by a sharp sting at the wrong moment?
+BACKCHANNEL oh gosh!
+WHY_QUESTION what's that?
+INFORM someone's coming!
+GREET jack!
+GREET jack !
+BACKCHANNEL ohh!
+ORDER look.. up above!
+YES-NO_QUESTION is that chim?
+FEEDBACK sure is..
+INFORM and hes scared to pieces!
+NOT_CLASSIFIABLE we'r to s old
+WHY_QUESTION great magic of bwana kessler now, lani?
+YES-NO_QUESTION now will you obey?
+INFORM does not fea you.
+INFORM she will hunt you dow she will ...
+ORDER get up and walk!
+BACKCHANNEL ohhhhhhh!
+BACKCHANNEL ah!
+INFORM meat on the table!
+INFORM horse ear!
+BACKCHANNEL hm
+GREET master,
+INFORM it is a great doublecross!
+INFORM we come across the ocean to help a man ... for this!
+FEEDBACK but he did say he was sorry, abdul!
+BACKCHANNEL oh no!
+INFORM  ... i absolutely refuse to talk to that drip!
+ORDER kathy, you've got to!
+INFORM maybe it will help square me with old man pushbutton!
+NOT_CLASSIFIABLE hell h de -
+INFORM a fine way to speak to a knight of the road!
+WHY_QUESTION knows't thou not who i am?
+INFORM but wait .. i think i know thee!
+INFORM thy face looks familiar!
+WHY_QUESTION thou art "the highway man", art thou not?
+INFORM you were magnificent, vooda!
+INFORM she has learned a lesson,
+ORDER don't fear!
+GREET and now, friend tex,
+INFORM let us get back to work!
+POLITENESS_FORMULA pardon me for not knocking,
+INFORM but i was so happy to hear you were saved!
+WHY_QUESTION how did you know?
+BACKCHANNEL good gosh!
+BACKCHANNEL what th' ...
+INFORM except this way!
+WHY_QUESTION loco plague?
+FEEDBACK yes!
+INFORM it is borne by the wind!
+INFORM  it's made many a town go loco...
+INFORM and i'm afraid tomb-stone city is another victim!
+ORDER look!
+INFORM and here's a touche you didn't expect!
+INFORM its spy smasher!
+ORDER bail out!
+BACKCHANNEL awk - awk!
+INFORM parrot.
+BACKCHANNEL chee - chee!
+BACKCHANNEL oops!
+INFORM just in time!
+INFORM i like to mix with people!
+ORDER help!
+INFORM -now to land and investigate that skeleton business - hmm!
+INFORM the two pilots bailed out -
+INFORM  they're trying to get away -
+BACKCHANNEL so far so good!
+INFORM now if i can glide over to a corner of the field they may never notice me!
+GREET y'know, sheriff,
+INFORM i'm kinda worried 'bout that young woman stayin' all alone in that cottage.
+BACKCHANNEL  oh,
+FEEDBACK i guess she'll be all right, parson.
+INFORM i'll keep an eye on her.
+INFORM but they give me an idea!
+INFORM and if i work fast, it may do the trick!

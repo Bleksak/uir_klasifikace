@@ -10,8 +10,11 @@ def make_corpus(cls: Class, dialogs: list[Dialog]) -> list[str]:
     """splits dialogs into separate classes (corpus)"""
     return list(map(attrgetter('text'), filter(lambda document: document.cls == cls, dialogs)))
 
-def bow(dialogs: list[str]) -> list[BagOfWords]:
+def bow_sublist(dialogs: list[str]) -> list[BagOfWords]:
     return [BagOfWords(sentence.split()) for sentence in dialogs]
+
+def bow(classes: set[Class], dialogs: list[Dialog]) -> dict[Class, dict[str, float]]:
+	return {cls: {k:1/v for k,v in reduce_bow(bow_sublist(make_corpus(cls, dialogs))).items()} for cls in classes}
 
 def count_distinct(documents: list[str]) -> int:
     return len(set("".join(documents).split()))
@@ -24,7 +27,7 @@ def document_frequency_calculate(bag: dict[str, int]) -> BagOfWords:
     return {word: (bag[word]+1) / (sum(bag.values()) + sum(1 if x > 0 else 0 for x in bag.values()) + 1) for word in bag}
 
 def document_frequency(classes: set[Class], dialogs: list[Dialog]) -> dict[Class, dict[str, float]]:
-    return {cls : document_frequency_calculate(reduce_bow(bow(make_corpus(cls, dialogs)))) for cls in classes}
+    return {cls : document_frequency_calculate(reduce_bow(bow_sublist(make_corpus(cls, dialogs)))) for cls in classes}
 
 def tf(term: str, bag: dict[str, int]) -> float:
     """"calculates the term frequency for given term and document"""
@@ -38,8 +41,7 @@ def tfidf_calculate(term: str, bag: dict[str, int], corpus: list[dict[str, int]]
     """calculates the actual tf-idf value"""
     return tf(term, bag) * idf(term, corpus)
 
-
-def tfidf_each(bags: list[BagOfWords]):
+def tfidf_each(bags: list[BagOfWords]) -> dict[str, float]:
     d = {}
 
     for bag in bags:
@@ -51,9 +53,6 @@ def tfidf_each(bags: list[BagOfWords]):
 
     return d
 
-def tfidf(classes: set[Class], dialogs: list[Dialog]) -> dict[Class, dict[str, dict[str, float]]]:
-    return {cls: tfidf_each(bow(make_corpus(cls, dialogs))) for cls in classes}
+def tfidf(classes: set[Class], dialogs: list[Dialog]) -> dict[Class, dict[str,  float]]:
+    return {cls: tfidf_each(bow_sublist(make_corpus(cls, dialogs))) for cls in classes}
 
-
-def mutual_information(classset: set[Class], dialogs: list[Dialog]) -> dict[Class, dict[str, float]]:
-    return {}
