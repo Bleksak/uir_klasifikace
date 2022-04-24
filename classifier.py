@@ -1,23 +1,23 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable
-from cls import Class
-from dialog import Dialog
+from symptom import Symptom
 
 
 @dataclass
 class Classifier(ABC):
     """defines the classifier abstract class"""
 
-    classes: set[Class]
-    symptom: Callable[[ set[Class], list[Dialog] ], dict[Class, dict[str, float]]]
+    classes: list[str]
+    symptom_class: Callable[[dict[str, list[str]]], None]
+    symptom: Symptom = field(init=False)
 
     @abstractmethod
-    def train(self, dialogs: list[Dialog]) -> None:
+    def train(self, dialogs: dict[str, list[str]]) -> None:
         """trains the classifier, this must be called before calling classify"""
-        pass
+        self.symptom = self.symptom_class(dialogs)
 
     @abstractmethod
-    def classify(sentence: str) -> Class:
+    def classify(sentence: str) -> str:
         """classifies the sentence into one of classes, classifier must be trained before calling this method, otherwise random result will be returned"""
         pass

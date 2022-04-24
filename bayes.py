@@ -1,43 +1,46 @@
 from dataclasses import dataclass, field
+from functools import reduce
 from operator import itemgetter
 from classifier import Classifier
-from cls import Class
-from dialog import Dialog
-
 
 @dataclass
 class Bayes(Classifier):
 	"""naive bayes classifier implementation"""
 
-	class_probabilities: dict[Class, float] = field(default_factory=dict, init=False)
-	probabilities: dict[Class, dict[str, float]] = field(init=False)
+	class_probabilities: dict[str, float] = field(init=False)
+	probabilities: dict[str, dict[str, float]] = field(init=False, default_factory=dict)
+	laplace_smoothing: int = 1
 
-	def train(self, dialogs: list[Dialog]):
+	def train(self, dialogs: dict[str, list[str]]) -> None:
+		super().train(dialogs)
 
-		# 1. calculate P(class)
-		# 2. calculate P(word | class):
-		# -- word frequency for each class
-		# -- distinct word count for each class
+		count = sum(len(sentences) for _, sentences in dialogs.items())
+		self.class_probabilities = {cls: len(sentences) / count for cls, sentences in dialogs.items()}
 
-		N = len(dialogs)
+		vec = self.symptom.vectorize('')
+
+		distinct_words_count = self.laplace_smoothing * len(vec)
+
+		for cls, features in self.symptom.features().items():
+			one_word_sum = [self.laplace_smoothing + sum(x) for x in (zip(*features))]
+			all_words_sum = sum(sum(x) for x in zip(*features))
+
+			self.probabilities[cls] = [x / (distinct_words_count + all_words_sum) for x in one_word_sum]
+
+	def classify(self, sentence: str) -> str | None:
+		symptom = self.symptom.vectorize(sentence)
+
+		max_p = 0 
+		max_cls = None
 
 		for cls in self.classes:
-			count = sum(1 for _ in filter(lambda x: x.cls == cls, dialogs))
-			self.class_probabilities[cls] = count / N
-		
-		self.probabilities = self.symptom(self.classes, dialogs)
+			p = self.class_probabilities.get(cls, 0)
 
-		print(self.class_probabilities)
-		print(self.probabilities)
-
-	def classify(self, sentence: str) -> Class:
-		probabilities = {}
-
-		for cls in self.classes:
-			p = 1
-			for word in sentence.split():
-				p *= self.probabilities[cls].get(word.strip('.,-!'), 1)
+			for index, value in enumerate(symptom):
+				p *= self.probabilities[cls][index] ** value
 			
-			probabilities[cls] = p
-
-		return min(probabilities.items(), key=itemgetter(1))[0]
+			if p > max_p:
+				max_p = p
+				max_cls = cls
+		
+		return max_cls
