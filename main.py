@@ -1,4 +1,3 @@
-from cgi import test
 import json
 from document_frequency import DocumentFrequency
 from bayes import Bayes
