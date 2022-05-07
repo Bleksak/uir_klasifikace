@@ -19,15 +19,27 @@ class Symptom(ABC):
 					if word not in self._bag:
 						self._bag[word] = current_index
 						current_index += 1
-		
+	
+		self.make_features()
+	
+	@abstractmethod
+	def make_features(self):
+		"""vectorizes training data"""
 		self.__features = { cls: [self.vectorize(sentence) for sentence in sentences ] for cls, sentences in self.__sentences.items() }
 
 	@abstractmethod
 	def vectorize(self, sentence: str) -> list[float|int]:
+		"""converts a sentence into a vector"""
 		pass
 
 	def bag(self) -> dict[str, int]:
+		"""returns the bag of words"""
 		return self._bag
 
 	def features(self) -> dict[str, list[int|float]]:
+		"""returns feature vectors for individual classes"""
 		return self.__features
+	
+	def _sentences(self) -> dict[str, list[str]]:
+		"""returns all sentences"""
+		return self.__sentences

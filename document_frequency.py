@@ -5,8 +5,13 @@ from symptom import Symptom
 
 @dataclass
 class DocumentFrequency(Symptom):
-	def vectorize(self, sentence: str):
-		"""converts a sentence into a vector"""
+	"""Document Frequency symptom"""
+
+	def make_features(self):
+		return super().make_features()
+
+	def vectorize(self, sentence: str) -> list[float|int]:
+		"""converts a sentence into a vector, where each vector field = count of each individual words"""
 		v = [0] * len(self._bag)
 
 		for word, count in Counter(sentence.split()).items():

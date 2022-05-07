@@ -1,6 +1,4 @@
 from dataclasses import dataclass, field
-from functools import reduce
-from operator import itemgetter
 from classifier import Classifier
 
 @dataclass
@@ -22,16 +20,20 @@ class Bayes(Classifier):
 		distinct_words_count = self.laplace_smoothing * len(vec)
 
 		for cls, features in self.symptom.features().items():
+			# how many times a word occurs in a class
 			one_word_sum = [self.laplace_smoothing + sum(x) for x in (zip(*features))]
+
+			# how many words class has
 			all_words_sum = sum(sum(x) for x in zip(*features))
 
 			self.probabilities[cls] = [x / (distinct_words_count + all_words_sum) for x in one_word_sum]
 
-	def classify(self, sentence: str) -> str | None:
+	def classify(self, sentence: str) -> str:
+		"""classifies a sentence into a class"""
 		symptom = self.symptom.vectorize(sentence)
 
 		max_p = 0 
-		max_cls = None
+		max_cls = ''
 
 		for cls in self.classes:
 			p = self.class_probabilities.get(cls, 0)
